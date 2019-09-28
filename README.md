@@ -5,3 +5,8 @@
 @ Instructor: Asish Law
 
 @ TA: Yunqi Guo
+
+## Week 0 
+- About this course,
+- JavaScript and WebGL Basic
+- Assignment 1
