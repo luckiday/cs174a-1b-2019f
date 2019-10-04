@@ -15,7 +15,7 @@ window.Triangle = window.classes.Triangle =
         constructor() {
             super("positions", "normals");
             this.positions = [Vec.of(0, 0, 0), Vec.of(1, 0, 0), Vec.of(0, 1, 0)];
-            this.normals = [Vec.of(0, 0, 1), Vec.of(0, 0, 1), Vec.of(0, 0, 1)];
+            this.normals = [Vec.of(0, 1, 0), Vec.of(0, 0, 1), Vec.of(0, 0, 1)];
             this.indices = [0, 1, 2];
         }
     };
@@ -86,7 +86,7 @@ window.Assignment_One_Scene = window.classes.Assignment_One_Scene =
         }
 
         draw_cube(graphics_state, model_transform) {
-            const red = Color.of(256 / 256, 28 / 100, 31 / 100, 1);
+            const red = Color.of(100 / 100, 28 / 100, 31 / 100, 1);
             this.shapes.box.draw(graphics_state, model_transform, this.plastic.override({color: red}));
         }
 
@@ -94,20 +94,45 @@ window.Assignment_One_Scene = window.classes.Assignment_One_Scene =
             // Initiate
             graphics_state.lights = this.lights;
 
-            //
             let model_transform = Mat4.identity();
             // TODO: Translate
-
+            // let T = Mat4.translation([1, 0, 0 ]);
+            let T = Mat.of(
+                [1, 0, 0, 1],
+                [0, 1, 0, 0],
+                [0, 0, 1, 0],
+                [0, 0, 0, 1],
+            );
+            // model_transform = model_transform.times(T);
 
             // TODO: Scale
-
+            // let S = Mat4.scale([1, 2, 1]);
+            let S = Mat.of(
+                [1, 0, 0, 0,],
+                [0, 2, 0, 0,],
+                [0, 0, 1, 0,],
+                [0, 0, 0, 1,],
+            );
+            // model_transform = model_transform.times(S);
 
             // TODO: Rotate
+            //let R = Mat4.rotation(Math.PI / 4, Vec.of(0, 0, 1));
+            let rot = Math.PI / 4;
+            let R = Mat.of(
+                [Math.cos(rot), -Math.sin(rot), 0, 0],
+                [Math.sin(rot), Math.cos(rot), 0, 0],
+                [0, 0, 1, 0],
+                [0, 0, 0, 1]
+            );
 
+            // Reverse the order, the results would be different.
+            model_transform = model_transform.times(S).times(R);
+            // model_transform = model_transform.times(R).times(S);
 
             // Draw
-            this.draw_triangle(graphics_state, model_transform);
-
+            // this.draw_triangle(graphics_state, model_transform);
             // TODO: Draw cube
+            console.log(model_transform);
+            this.draw_cube(graphics_state, model_transform);
         }
     };
