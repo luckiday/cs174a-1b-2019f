@@ -1,21 +1,22 @@
+// Name the values we'll define per each vertex.
+// First, specify the vertex positions -- the three point locations of an imaginary triangle.
+// Next, supply vectors that point away from the triangle face.  They should match up with the points in
+// the above list.  Normal vectors are needed so the graphics engine can know if the shape is pointed at
+// light or not, and color it accordingly.  lastly, put each point somewhere in texture space too.
+// Index into our vertices to connect them into a whole triangle.
+// A position, normal, and texture coord fully describes one "vertex".  What's the "i"th vertex?  Simply the combined data
+// you get if you look up index "i" of those lists above -- a position, normal vector, and tex coord together.  Lastly we
+// told it how to connect vertex entries into triangles.  Every three indices in "this.indices" traces out one triangle.
+
 window.Triangle = window.classes.Triangle =
     class Triangle extends Shape {
         // The simplest possible Shape – one triangle.  It has 3 vertices, each
         // having their own 3D position, normal vector, and texture-space coordinate.
         constructor() {
             super("positions", "normals");
-            // Name the values we'll define per each vertex.
-            // First, specify the vertex positions -- the three point locations of an imaginary triangle.
-            // Next, supply vectors that point away from the triangle face.  They should match up with the points in
-            // the above list.  Normal vectors are needed so the graphics engine can know if the shape is pointed at
-            // light or not, and color it accordingly.  lastly, put each point somewhere in texture space too.
             this.positions = [Vec.of(0, 0, 0), Vec.of(1, 0, 0), Vec.of(0, 1, 0)];
             this.normals = [Vec.of(0, 0, 1), Vec.of(0, 0, 1), Vec.of(0, 0, 1)];
             this.indices = [0, 1, 2];
-            // Index into our vertices to connect them into a whole triangle.
-            // A position, normal, and texture coord fully describes one "vertex".  What's the "i"th vertex?  Simply the combined data
-            // you get if you look up index "i" of those lists above -- a position, normal vector, and tex coord together.  Lastly we
-            // told it how to connect vertex entries into triangles.  Every three indices in "this.indices" traces out one triangle.
         }
     };
 
@@ -24,25 +25,17 @@ window.Cube = window.classes.Cube =
         // Here's a complete, working example of a Shape subclass.  It is a blueprint for a cube.
         constructor() {
             super("positions", "normals");
-            // Name the values we'll define per each vertex.  They'll have positions and normals.
-            // First, specify the vertex positions -- just a bunch of points that exist at the corners of an imaginary cube.
             this.positions.push(
                 ...Vec.cast([-1, -1, -1], [1, -1, -1], [-1, -1, 1], [1, -1, 1], [1, 1, -1], [-1, 1, -1], [1, 1, 1], [-1, 1, 1],
                     [-1, -1, -1], [-1, -1, 1], [-1, 1, -1], [-1, 1, 1], [1, -1, 1], [1, -1, -1], [1, 1, 1], [1, 1, -1],
                     [-1, -1, 1], [1, -1, 1], [-1, 1, 1], [1, 1, 1], [1, -1, -1], [-1, -1, -1], [1, 1, -1], [-1, 1, -1]));
-            // Supply vectors that point away from each face of the cube.  They should match up with the points in the above list
-            // Normal vectors are needed so the graphics engine can know if the shape is pointed at light or not, and color it accordingly.
             this.normals.push(
                 ...Vec.cast([0, -1, 0], [0, -1, 0], [0, -1, 0], [0, -1, 0], [0, 1, 0], [0, 1, 0], [0, 1, 0], [0, 1, 0],
                     [-1, 0, 0], [-1, 0, 0], [-1, 0, 0], [-1, 0, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0],
                     [0, 0, 1], [0, 0, 1], [0, 0, 1], [0, 0, 1], [0, 0, -1], [0, 0, -1], [0, 0, -1], [0, 0, -1]));
 
-            // Those two lists, positions and normals, fully describe the "vertices".  What's the "i"th vertex?  Simply the combined
-            // data you get if you look up index "i" of both lists above -- a position and a normal vector, together.  Now let's
-            // tell it how to connect vertex entries into triangles.  Every three indices in this list makes one triangle:
             this.indices.push(0, 1, 2, 1, 3, 2, 4, 5, 6, 5, 7, 6, 8, 9, 10, 9, 11, 10, 12, 13,
                 14, 13, 15, 14, 16, 17, 18, 17, 19, 18, 20, 21, 22, 21, 23, 22);
-            // It stinks to manage arrays this big.  Later we'll show code that generates these same cube vertices more automatically.
         }
     };
 
