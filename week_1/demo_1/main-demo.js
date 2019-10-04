@@ -88,7 +88,7 @@ window.Assignment_One_Scene = window.classes.Assignment_One_Scene =
         make_control_panel() {
         }
 
-        draw_white_triangle(graphics_state, model_transform) {
+        draw_triangle(graphics_state, model_transform) {
             const white = Color.of(1, 1, 1, 1);
             this.shapes.triangle.draw(graphics_state, model_transform, this.plastic.override({color: white}));
         }
@@ -114,7 +114,7 @@ window.Assignment_One_Scene = window.classes.Assignment_One_Scene =
 
 
             // Draw
-            this.draw_white_triangle(graphics_state, model_transform);
+            this.draw_triangle(graphics_state, model_transform);
 
             // TODO: Draw cube
         }
