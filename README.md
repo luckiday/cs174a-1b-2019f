@@ -12,10 +12,8 @@
 - Assignment 1
 
 
-
-##Week 1
+## Week 1
 
 - Making shapes in code
 - Transformations
 - Programming with tiny-graphics.js
-
