@@ -10,3 +10,12 @@
 - About this course,
 - JavaScript and WebGL Basic
 - Assignment 1
+
+
+
+##Week 1
+
+- Making shapes in code
+- Transformations
+- Programming with tiny-graphics.js
+
