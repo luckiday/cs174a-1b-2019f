@@ -22,6 +22,7 @@
   - shear
 - Programming with tiny-graphics.js
 
+
 ## Week 2
 
 - Transformations
