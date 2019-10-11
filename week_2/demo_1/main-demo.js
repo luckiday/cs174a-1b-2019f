@@ -52,8 +52,7 @@ window.Square_Outline = window.classes.Square_Outline =
                 )
             );
 
-            this.colors = [white_c, white_c, white_c, white_c, white_c, white_c, white_c,
-                white_c,];
+            this.colors = [white_c, white_c, white_c, white_c, white_c, white_c, white_c, white_c,];
             this.indexed = false;       // Do this so we won't need to define "this.indices".
         }
     };
