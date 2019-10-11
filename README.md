@@ -16,4 +16,19 @@
 
 - Making shapes in code
 - Transformations
+  - translation
+  - scaling
+  - rotation
+  - shear
 - Programming with tiny-graphics.js
+
+## Week 2
+
+- Transformations
+  - shear
+- Shapes
+- Spaces
+  - model space
+  - object/world space
+  - eye/camera space
+  - screen space
