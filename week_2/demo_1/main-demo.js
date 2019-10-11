@@ -47,6 +47,10 @@ window.Square_Outline = window.classes.Square_Outline =
             // HINT: When a set of lines is used in graphics, you should think of the list
             // entries as broken down into pairs; each pair of vertices will be drawn as a
             // line segment.
+            this.positions.push(
+                ...Vec.cast(
+                )
+            );
 
             this.colors = [white_c, white_c, white_c, white_c, white_c, white_c, white_c,
                 white_c,];
@@ -109,7 +113,7 @@ window.Assignment_One_Scene = window.classes.Assignment_One_Scene =
         }
 
         draw_outline(graphics_state, model_transform) {
-            this.shapes.outline.draw(graphics_state, model_transform, this.white, "LINES",);
+            // TODO: Define drawing function for outline
         }
 
         display(graphics_state) {
@@ -124,7 +128,10 @@ window.Assignment_One_Scene = window.classes.Assignment_One_Scene =
 
             // TODO: Make a set of shapes
 
-            // TODO: Make an animation
+            // TODO: Make Animation
+            const t = this.t = graphics_state.animation_time / 1000;
+
+            // TODO: (Practice) Use reflection, scaling, translation, and rotation together to draw a tree.
 
             this.draw_triangle(graphics_state, model_transform);
         }
