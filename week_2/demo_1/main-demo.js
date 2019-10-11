@@ -49,6 +49,10 @@ window.Square_Outline = window.classes.Square_Outline =
             // line segment.
             this.positions.push(
                 ...Vec.cast(
+                    [0, 0, 0], [1, 0, 0],
+                    [1, 1, 0], [0, 1, 0],
+                    [1, 0, 0], [1, 1, 0],
+                    [0, 1, 0], [0, 0, 0],
                 )
             );
 
@@ -113,6 +117,7 @@ window.Assignment_One_Scene = window.classes.Assignment_One_Scene =
 
         draw_outline(graphics_state, model_transform) {
             // TODO: Define drawing function for outline
+            this.shapes.outline.draw(graphics_state, model_transform, this.white, "LINES")
         }
 
         display(graphics_state) {
@@ -122,16 +127,53 @@ window.Assignment_One_Scene = window.classes.Assignment_One_Scene =
             let model_transform = Mat4.identity();
 
             // TODO: Shear
-
+            let shear = Mat.of(
+                [1, .5, 0, 0],
+                [.5, 1, 0, 0],
+                [0, 0, 1, 0],
+                [0, 0, 0, 1],
+            );
+            // model_transform = model_transform.times(shear);
             // TODO: Reflection
+            // this.draw_triangle(graphics_state, model_transform)
+            // let reflect = Mat.of(
+            //     [-1,0,0,0],
+            //     [0,-1,0,0],
+            //     [0,0,1,0],
+            //     [0,0,0,1],
+            // );
+            let a = 1 / Math.sqrt(5), b = 2 / Math.sqrt(5), c = 0;
+            let reflect = Mat.of(
+                [1 - 2 * a * a, -2 * a * b, -2 * a * c, 0],
+                [-2 * a * b, 1 - 2 * b * b, -2 * b * c, 0],
+                [-2 * a * c, -2 * b * c, 1 - 2 * c * c, 0],
+                [0, 0, 0, 1]
+            );
+            // model_transform = model_transform.times(reflect);
 
+            // Draw the outline
+            this.draw_outline(graphics_state, model_transform);
             // TODO: Make a set of shapes
+            // for (let i = 0; i < 50; i++) {
+            //     let translate = Mat4.translation([0, 1, 0]);
+            //     let rotate = Mat4.rotation(Math.PI / 20, Vec.of(0, 0, 1));
+            //     let scale = Mat4.scale(Vec.of(0.9, 0.9, 1));
+            //     model_transform = model_transform.times(translate).times(rotate).times(scale);
+            //     this.draw_outline(graphics_state, model_transform);
+            // }
 
             // TODO: Make Animation
             const t = this.t = graphics_state.animation_time / 1000;
+            // console.log(t);
+            for (let i = 0; i < 50; i++) {
+                let translate = Mat4.translation([0, 1, 0]);
+                let rotate = Mat4.rotation(Math.PI / 20 * Math.sin(t), Vec.of(0, 0, 1));
+                let scale = Mat4.scale(Vec.of(0.9, 0.9, 1));
+                model_transform = model_transform.times(translate).times(rotate).times(scale);
+                this.draw_outline(graphics_state, model_transform);
+            }
 
             // TODO: (Practice) Use reflection, scaling, translation, and rotation together to draw a tree.
-
-            this.draw_triangle(graphics_state, model_transform);
+            // this.draw_triangle(graphics_state, model_transform);
         }
     };
