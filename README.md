@@ -16,10 +16,9 @@
 
 - Making shapes in code
 - Transformations
-  - translation
-  - scaling
-  - rotation
-  - shear
+  - Translation
+  - Scaling
+  - Rotation
 - Programming with tiny-graphics.js
 
 
