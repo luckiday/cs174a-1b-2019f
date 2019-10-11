@@ -124,7 +124,7 @@ window.Assignment_One_Scene = window.classes.Assignment_One_Scene =
 
             // TODO: Make a set of shapes
 
-            // TODO: Make Animation
+            // TODO: Make an animation
 
             this.draw_triangle(graphics_state, model_transform);
         }
