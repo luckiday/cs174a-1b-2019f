@@ -25,10 +25,6 @@
 ## Week 2
 
 - Transformations
-  - shear
-- Shapes
-- Spaces
-  - model space
-  - object/world space
-  - eye/camera space
-  - screen space
+  - Shearing
+  - Reflection
+- Make animation with tiny-graphics.js
