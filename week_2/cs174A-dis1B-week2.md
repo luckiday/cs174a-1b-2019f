@@ -21,11 +21,17 @@
 
 ## Shear
 
-$$x’ = x + \mathrm{Sh}_{x}^{y} y + \mathrm{Sh}_{x}^{z} z$$
+$$
+x’ = x + \mathrm{Sh}_{x}^{y} y + \mathrm{Sh}_{x}^{z} z
+$$
 
-$$y' = \mathrm{Sh}_{y}^{x}x + y +\mathrm{Sh}_{y}^{z}z$$
+$$
+y' = \mathrm{Sh}_{y}^{x}x + y +\mathrm{Sh}_{y}^{z}z
+$$
 
-$$z' = \mathrm{Sh}_{z}^{x}x + \mathrm{Sh}_{z}^{y}y + z$$
+$$
+z' = \mathrm{Sh}_{z}^{x}x + \mathrm{Sh}_{z}^{y}y + z
+$$
 
 $$
 \left(
