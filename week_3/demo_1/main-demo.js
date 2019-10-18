@@ -75,11 +75,13 @@ window.Demo_Scene = window.classes.Demo_Scene =
 
 
             // Locate the camera here (inverted matrix).
-            context.globals.graphics_state.camera_transform = Mat4.translation([0, 0, 0]);
-            context.globals.graphics_state.projection_transform = Mat4.perspective(Math.PI / 4, r, .1, 1000);
-
+            // context.globals.graphics_state.camera_transform = Mat4.translation([0, 0, -10]);
             // TODO: Change the camera_transformation and projection transformation
-
+            context.globals.graphics_state.camera_transform =
+                Mat4.look_at(Vec.of(-5, 0, 5), Vec.of(0, 0, 0), Vec.of(0, 1, 0));
+            // context.globals.graphics_state.projection_transform = Mat4.perspective(Math.PI / 4, r, .1, 1000);
+            // context.globals.graphics_state.projection_transform = Mat4.perspective(Math.PI / 8, r, .1, 1000);
+            context.globals.graphics_state.projection_transform = Mat4.orthographic(-4.5, 4.5,-2.5, 2.5, 0.1, 1000);
 
             const shapes = {
                 // At the beginning of our program, load one of each of these shape
@@ -111,7 +113,7 @@ window.Demo_Scene = window.classes.Demo_Scene =
 
 
         draw_cube(graphics_state, model_transform) {
-            const red = Color.of(100 / 100, 28 / 100, 31 / 100, .5);
+            const red = Color.of(100 / 100, 50 / 100, 50 / 100, .7);
             this.shapes.box.draw(graphics_state, model_transform, this.plastic.override({color: red}));
         }
 
@@ -123,7 +125,7 @@ window.Demo_Scene = window.classes.Demo_Scene =
             let model_transform = Mat4.identity();
 
             // Draw the single cube
-            model_transform = model_transform.times(Mat4.translation(Vec.of(0, 0, -10)));
+            model_transform = model_transform.times(Mat4.translation(Vec.of(0, 0, 0)));
             this.draw_cube(graphics_state, model_transform);
         }
     };
