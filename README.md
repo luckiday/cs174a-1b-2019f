@@ -28,3 +28,15 @@
   - Shearing
   - Reflection
 - Make animation with tiny-graphics.js
+
+## Week 3
+
+- Viewing
+- Spaces
+  - Model space
+  - Objective/world space
+  - Eye/camera space
+  - Screen space
+- Projections
+  - Parallel
+  - Perspective
