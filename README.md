@@ -40,3 +40,9 @@
 - Projections
   - Parallel
   - Perspective
+  
+  
+## Week 4
+
+- Midterm review
+- Project proposal
