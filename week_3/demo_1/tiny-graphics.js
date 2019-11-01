@@ -289,7 +289,7 @@ window.Mat4 = window.tiny_graphics.Mat4 =
             // Divide by determinant and return.
             return result.times(1 / (m00 * result[0][0] + m10 * result[0][1] + m20 * result[0][2] + m30 * result[0][3]));
         }
-    }
+    };
 
 
 window.Keyboard_Manager = window.tiny_graphics.Keyboard_Manager =
@@ -343,7 +343,7 @@ window.Keyboard_Manager = window.tiny_graphics.Keyboard_Manager =
         }) {
             this.saved_controls[shortcut_combination.join('+')] = {shortcut_combination, callback, keyup_callback};
         }
-    }
+    };
 
 
 window.Code_Manager = window.tiny_graphics.Code_Manager =
@@ -365,20 +365,20 @@ window.Code_Manager = window.tiny_graphics.Code_Manager =
             this.no_comments = [];
             let single_token = null;
             while ((single_token = es6_tokens_parser.exec(code)) !== null) {
-                let token = {type: "invalid", value: single_token[0]}
-                if (single_token[1]) token.type = "string" , token.closed = !!(single_token[3] || single_token[4])
-                else if (single_token[5]) token.type = "comment"
-                else if (single_token[6]) token.type = "comment", token.closed = !!single_token[7]
-                else if (single_token[8]) token.type = "regex"
-                else if (single_token[9]) token.type = "number"
-                else if (single_token[10]) token.type = "name"
-                else if (single_token[11]) token.type = "punctuator"
-                else if (single_token[12]) token.type = "whitespace"
-                this.tokens.push(token)
+                let token = {type: "invalid", value: single_token[0]};
+                if (single_token[1]) token.type = "string" , token.closed = !!(single_token[3] || single_token[4]);
+                else if (single_token[5]) token.type = "comment";
+                else if (single_token[6]) token.type = "comment", token.closed = !!single_token[7];
+                else if (single_token[8]) token.type = "regex";
+                else if (single_token[9]) token.type = "number";
+                else if (single_token[10]) token.type = "name";
+                else if (single_token[11]) token.type = "punctuator";
+                else if (single_token[12]) token.type = "whitespace";
+                this.tokens.push(token);
                 if (token.type != "whitespace" && token.type != "comment") this.no_comments.push(token.value);
             }
         }
-    }
+    };
 
 
 window.Vertex_Buffer = window.tiny_graphics.Vertex_Buffer =
@@ -430,7 +430,7 @@ window.Vertex_Buffer = window.tiny_graphics.Vertex_Buffer =
                                                                                                  // the correct buffer region in the GPU that
             for (let [attr_name, attribute] of Object.entries(material.shader.g_addrs.shader_attributes))  // holds that shape's data.
             {
-                const buffer_name = material.shader.map_attribute_name_to_buffer_name(attr_name)
+                const buffer_name = material.shader.map_attribute_name_to_buffer_name(attr_name);
                 if (!buffer_name || !attribute.enabled) {
                     if (attribute.index >= 0) gl.disableVertexAttribArray(attribute.index);
                     continue;
@@ -442,7 +442,7 @@ window.Vertex_Buffer = window.tiny_graphics.Vertex_Buffer =
             }
             this.execute_shaders(gl, type);                                                // Run the shaders to draw every triangle now.
         }
-    }
+    };
 
 
 window.Shape = window.tiny_graphics.Shape =
@@ -533,7 +533,7 @@ window.Shape = window.tiny_graphics.Shape =
             else
                 this.positions = this.positions.map(p => p.times(1 / average_lengths.norm()));
         }
-    }
+    };
 
 
 window.Graphics_State = window.tiny_graphics.Graphics_State =
@@ -548,7 +548,7 @@ window.Graphics_State = window.tiny_graphics.Graphics_State =
                 lights: []
             });
         }
-    }
+    };
 
 window.Light = window.tiny_graphics.Light =
     class Light                                                     // The properties of one light in the scene (Two 4x1 Vecs and a scalar)
@@ -560,11 +560,14 @@ window.Light = window.tiny_graphics.Light =
 
 window.Color = window.tiny_graphics.Color =
     class Color extends Vec {
-    }    // Just an alias.  Colors are special 4x1 vectors expressed as ( red, green, blue, opacity ) each from 0 to 1.
+    };    // Just an alias.  Colors are special 4x1 vectors expressed as ( red, green, blue, opacity ) each from 0 to 1.
 
 window.Graphics_Addresses = window.tiny_graphics.Graphics_Addresses =
     class Graphics_Addresses    // For organizing communication with the GPU for Shaders.  Now that we've compiled the Shader, we can query
-    {                           // some things about the compiled program, such as the memory addresses it will use for uniform variables,
+    {
+        model_transform_loc;
+        projection_camera_transform_loc;
+        // some things about the compiled program, such as the memory addresses it will use for uniform variables,
                                 // and the types and indices of its per-vertex attributes.  We'll need those for building vertex buffers.
         constructor(program, gl) {
             const num_uniforms = gl.getProgramParameter(program, gl.ACTIVE_UNIFORMS);
@@ -587,7 +590,7 @@ window.Graphics_Addresses = window.tiny_graphics.Graphics_Addresses =
                 };
             }
         }
-    }
+    };
 
 
 window.Shader = window.tiny_graphics.Shader =
@@ -633,7 +636,7 @@ window.Shader = window.tiny_graphics.Shader =
 
         fragment_glsl_code() {
         }
-    }
+    };
 
 
 window.Texture = window.tiny_graphics.Texture =
@@ -660,14 +663,14 @@ window.Texture = window.tiny_graphics.Texture =
                 } else                                                                        // We can also use the worst sampling method, to
                     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);   // illustrate the difference that mip-mapping makes.
                 this.loaded = true;
-            }
+            };
             if (bool_will_copy_to_GPU)                                               // Avoid a browser warning, and load the image file.
             {
                 this.image.crossOrigin = "Anonymous";
                 this.image.src = this.filename;
             }
         }
-    }
+    };
 
 
 window.Canvas_Manager = window.tiny_graphics.Canvas_Manager =
@@ -738,7 +741,7 @@ window.Canvas_Manager = window.tiny_graphics.Canvas_Manager =
             for (let s of this.scene_components) s.display(this.globals.graphics_state);            // Draw each registered animation.
             this.event = window.requestAnimFrame(this.render.bind(this));   // Now that this frame is drawn, request that render() happen
         }                                                                     // again as soon as all other web page events are processed.
-    }
+    };
 
 window.Scene_Component = window.tiny_graphics.Scene_Component =
     class Scene_Component       // The Scene_Component superclass is the base class for any scene part or code snippet that you can add to a
@@ -749,7 +752,7 @@ window.Scene_Component = window.tiny_graphics.Scene_Component =
                 callback(event);
                 event.preventDefault();    // Fire the callback and cancel any default browser shortcut that is an exact match.
                 event.stopPropagation();   // Don't bubble the event to parent nodes; let child elements be targetted in isolation.
-            }
+            };
             Object.assign(this, {
                 key_controls: new Keyboard_Manager(document, callback_behavior),
                 globals: canvas_manager.globals
@@ -757,7 +760,7 @@ window.Scene_Component = window.tiny_graphics.Scene_Component =
             control_box.appendChild(Object.assign(document.createElement("div"), {
                 textContent: this.constructor.name,
                 className: "control-title"
-            }))
+            }));
             this.control_panel = control_box.appendChild(document.createElement("div"));
             this.control_panel.className = "control-div";
         }
@@ -824,7 +827,7 @@ window.Scene_Component = window.tiny_graphics.Scene_Component =
 
         show_explanation(document_section) {
         }
-    }
+    };
 
 
 window.Canvas_Widget = window.tiny_graphics.Canvas_Widget =
@@ -852,7 +855,7 @@ window.Canvas_Widget = window.tiny_graphics.Canvas_Widget =
             catch {
                 Vec.of = function () {
                     return new Vec(Array.from(arguments))
-                }
+                };
                 Vec.from = function (arr) {
                     return new Vec(Array.from(arr))
                 }
@@ -875,4 +878,4 @@ window.Canvas_Widget = window.tiny_graphics.Canvas_Widget =
 
             this.canvas_manager.render();   // Start WebGL initialization.  Note that render() will re-queue itself for more calls.
         }
-    }
+    };
