@@ -7,6 +7,7 @@
 @ TA: Yunqi Guo
 
 ## Week 0 
+
 - About this course,
 - JavaScript and WebGL Basic
 - Assignment 1
@@ -46,3 +47,28 @@
 
 - Midterm review
 - Project proposal
+
+
+## Week 5
+
+- Lighting
+  - point light source
+  - ambient
+  - diffusivity
+  - specular
+- Shading
+  - flat shading; 
+  - smooth shading: Gouruad and Phong
+- Camera Transformation
+
+
+## Week 6
+
+- Group Project Discussion
+
+
+## Week 7
+
+- Midterm Solutions
+- Assignment 4
+- Collision Detection
