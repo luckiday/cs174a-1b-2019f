@@ -10,13 +10,21 @@ window.Assignment_Four_Scene = window.classes.Assignment_Four_Scene =
 
             const r = context.width / context.height;
             context.globals.graphics_state.projection_transform = Mat4.perspective(Math.PI / 4, r, .1, 1000);
+            this.rows = 70;
+            this.columns = 70;
+            this.width = 95;  //x
+            this.length = 70; //y
+            this.height = 20;
+            this.Height_Map = [];
+            this.time = 1;
 
             // TODO:  Create two cubes, including one with the default texture coordinates (from 0 to 1), and one with the modified
             //        texture coordinates as required for cube #2.  You can either do this by modifying the cube code or by modifying
             //        a cube instance's texture_coords after it is already created.
             const shapes = {
                 box_1: new Cube(),
-                axis: new Axis_Arrows()
+                axis: new Axis_Arrows(),
+                water_1: new Water(),
             };
             shapes.box_1.texture_coords = shapes.box_1.texture_coords.map(v => Vec.of(v[0] * 2, v[1] * 3));
 
@@ -29,9 +37,9 @@ window.Assignment_Four_Scene = window.classes.Assignment_Four_Scene =
                 {
                     phong: context.get_instance(Phong_Shader).material(Color.of(1, 1, 0, 1)),
                     box_1: context.get_instance(Texture_Rotate).material(
-                        Color.of(0, 0, 0, 1), {
+                        Color.of(1, 1, 0, 1), {
                             ambient: 1,
-                            texture: context.get_instance("assets/demo_2.png")
+                            texture: context.get_instance("assets/box.png")
                         }
                     ),
                 };
@@ -51,10 +59,15 @@ window.Assignment_Four_Scene = window.classes.Assignment_Four_Scene =
             const t = graphics_state.animation_time / 1000, dt = graphics_state.animation_delta_time / 1000;
 
             // TODO:  Draw the required boxes. Also update their stored matrices.
+            let water_trans = Mat4.identity();
+            water_trans = water_trans.times(Mat4.rotation(t, Vec.of(1, 1, 0)));
             // this.shapes.axis.draw(graphics_state, Mat4.identity(), this.materials.phong);
-            this.shapes.box_1.draw(graphics_state, Mat4.identity(), this.materials.box_1);
+            // this.shapes.box_1.draw(graphics_state, Mat4.identity(), this.materials.box_1);
+            this.shapes.water_1.positions.forEach((p, i, a) => a[i] = [0, 0, 0]);
+            this.shapes.water_1.draw(graphics_state, water_trans, this.materials.phong);
         }
     };
+
 
 class Texture_Rotate extends Phong_Shader {
     fragment_glsl_code()           // ********* FRAGMENT SHADER *********

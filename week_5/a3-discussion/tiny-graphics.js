@@ -445,7 +445,9 @@ class Shader                   // Your subclasses of Shader will manage strings 
       this.g_addrs = new Graphics_Addresses( this.program, this.gl );
     }
     activate() { this.gl.useProgram( this.program ); }                    // You have to override the following five functions:
-    material(){}  update_GPU(){}  shared_glsl_code(){}  vertex_glsl_code(){}  fragment_glsl_code(){}
+    material(){}
+    update_GPU(){}
+    shared_glsl_code(){}  vertex_glsl_code(){}  fragment_glsl_code(){}
 }
 
 
