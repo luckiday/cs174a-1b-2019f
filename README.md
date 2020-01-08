@@ -72,3 +72,15 @@
 - Midterm Solutions
 - Assignment 4
 - Collision Detection
+
+## Week 8
+- Announcements
+- Tiny graphics examples
+- Making Shapes
+- Motion
+- Collision Detection
+- Particle Shaders
+- Scene timing
+
+## Week 10
+- Final review
